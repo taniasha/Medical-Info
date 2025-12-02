@@ -23,7 +23,7 @@ const app = express();
 connectRedis();
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "*",
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   credentials: true,
 };
@@ -46,10 +46,10 @@ main()
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb+srv://tania:12345@cluster0.skjhj7o.mongodb.net/medicine");
-
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+  await mongoose.connect("" + process.env.MONGO_URI);
 }
+
+
 
 app.get("/API/messages", async (req, res) => {
   const { from, to } = req.query;

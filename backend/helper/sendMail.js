@@ -1,18 +1,21 @@
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Create a reusable transporter
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
-    user: "titu192005@gmail.com", // Your new email
-    pass: "kslb qzby gkrg ehof", // Use environment variable for password
+    user: process.env.EMAIL_USER,  // from .env
+    pass: process.env.EMAIL_PASS,  // from .env
   },
 });
 
 export const sendMail = async (to, subject, text, htmlContent) => {
   try {
     const info = await transporter.sendMail({
-      from: "titu192005@gmail.com",
+      from: process.env.EMAIL_USER,
       to,
       subject,
       text,
@@ -29,7 +32,7 @@ export const sendMail = async (to, subject, text, htmlContent) => {
 export const orderMail = async (to, subject, text, htmlContent) => {
   try {
     const info = await transporter.sendMail({
-      from: "titu192005@gmail.com",
+      from: process.env.EMAIL_USER,
       to,
       subject,
       text,
