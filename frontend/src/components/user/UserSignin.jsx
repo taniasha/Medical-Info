@@ -22,7 +22,7 @@ export default function UserSignin() {
     let password = data.password;
 
     try {
-      const res = await axios.post("/API/user/signin", {
+      const res = await axios.post("https://medical-info.onrender.com/API/user/signin", {
         email,
         password,
       });

@@ -18,10 +18,10 @@ function Home() {
       async function getData() {
         try {
           if (query !== "") {
-            const res = await axios.get(`/API/medicine/search/${query}`);
+            const res = await axios.get(`https://medical-info.onrender.com/API/medicine/search/${query}`);
             setAllMedicine(res.data);
           } else {
-            const res = await axios.get("/API/medicine");
+            const res = await axios.get("https://medical-info.onrender.com/API/medicine");
 
             if (res.data.success) {
               setAllMedicine(res.data.allMedicine);

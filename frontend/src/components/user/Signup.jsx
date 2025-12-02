@@ -24,7 +24,7 @@ function Signup() {
     const mobile = data.mobile;
 
     try {
-      const res = await axios.post("/API/user/signup", {
+      const res = await axios.post("https://medical-info.onrender.com/API/user/signup", {
         name,
         email,
         password,

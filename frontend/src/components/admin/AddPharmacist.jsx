@@ -18,7 +18,7 @@ function AddPharmacist() {
     const { name, email, password, mobile, startTime, endTime } = data;
 
     const res = await axios.post(
-      "/API/admin/pharmacist/add",
+      "https://medical-info.onrender.com/API/admin/pharmacist/add",
       {
         name,
         email,

@@ -16,7 +16,7 @@ id = id.replace(/^76b/, "").replace(/76b$/, "");
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.post("/API/user/validate", { id });
+        const res = await axios.post("https://medical-info.onrender.com/API/user/validate", { id });
 
         if (res.status !== 200) {
           alert("Reset Password Link is not valid");

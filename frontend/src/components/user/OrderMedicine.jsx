@@ -33,7 +33,7 @@ export default function OrderMedicine() {
 
   const onSubmit = async (data) => {
     if (medicines.length > 0) {
-      const res = await axios.post("/API/user/medicine/order", {
+      const res = await axios.post("https://medical-info.onrender.com/API/user/medicine/order", {
         ...data,
         medicines,
       });

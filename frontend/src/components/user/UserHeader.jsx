@@ -13,7 +13,7 @@ function Header() {
   const [isModalOpen, setIsModelOpen] = useState(false);
 
   const handleSignOut = async () => {
-    const res = await axios.get("/API/signout", {
+    const res = await axios.get("https://medical-info.onrender.com/API/signout", {
       withCredentials: true,
     });
     if (res.data.success) {
