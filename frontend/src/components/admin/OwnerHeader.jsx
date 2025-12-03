@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import GeneralModal from "../pages/GeneralModal";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function OwnerHeader() {
   const isToken = useSelector((state) => state.auth.status);
@@ -14,7 +15,7 @@ function OwnerHeader() {
   const [isModalOpen, setIsModelOpen] = useState(false);
 
   const handleSignOut = async () => {
-    const res = await axios.get("/API/signout", {
+    const res = await axios.get(`${backendBase}/API/signout`, {
       withCredentials: true,
     });
 

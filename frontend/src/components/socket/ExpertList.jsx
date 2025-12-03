@@ -4,6 +4,7 @@ import { UserCircleIcon } from "@heroicons/react/24/outline";
 import UserHeader from "../user/UserHeader";
 import { useNavigate } from "react-router-dom";
 import { SocketContext } from "../context/SocketContext";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function ExpertList() {
   const [expertList, setExpertList] = useState([]);
@@ -26,20 +27,23 @@ function ExpertList() {
   }, [mySocket]);
 
   // Fetch all experts
-  useEffect(() => {
-    async function getData() {
-      try {
-        const res = await axios.get("/API/pharmacist", { withCredentials: true });
-        setExpertList(res.data);
-      } catch (error) {
-        console.error("Error fetching experts:", error);
-      }
+ useEffect(() => {
+  async function getData() {
+    try {
+      const res = await axios.get(`${backendBase}/API/pharmacist/`, { withCredentials: true });
+      // Make sure we assign an array
+      setExpertList(res.data.pharmacists || []); 
+    } catch (error) {
+      console.error("Error fetching experts:", error);
+      setExpertList([]); // fallback to empty array
     }
-    getData();
-  }, []);
+  }
+  getData();
+}, []);
+
 
   const handleExpert = (mobile) => {
-    navigate("/user/chat-with-expert", { state: mobile });
+    navigate(`${backendBase}/user/chat-with-expert`, { state: mobile });
   };
 
   return (

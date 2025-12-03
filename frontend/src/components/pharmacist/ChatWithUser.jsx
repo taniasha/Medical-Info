@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SocketContext } from "../context/SocketContext";
 import { useSelector } from "react-redux";
+const backendBase = import.meta.env.VITE_API_URL;
 
 const ChatWithUser = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const ChatWithUser = () => {
   useEffect(() => {
     async function getMessages() {
       if (mobile && from) {
-        const res = await axios.get("/API/messages", {
+        const res = await axios.get(`${backendBase}/API/messages`, {
           params: {
             from,
             to: mobile,
@@ -38,7 +39,7 @@ const ChatWithUser = () => {
 
   useEffect(() => {
     async function fetchUser() {
-      const res = await axios.get("/API/user/find-user", {
+      const res = await axios.get(`{backendBase}/API/user/find-user`, {
         params: { mobile },
         withCredentials: true,
       });

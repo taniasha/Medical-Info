@@ -3,7 +3,7 @@ import Order from "../models/order.js";
 import { encryptPassword, sendToken, comparePassword } from "../helper/auth.js";
 import { orderMail } from "../helper/sendMail.js";
 import {sendMail} from "../helper/sendMail.js";
-
+const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 export const index = async (req, res) => {
   const users = await User.find({});
@@ -112,7 +112,7 @@ export const forgetPassword = async (req, res) => {
     const id = user._id;
 
     // Generate Reset URL
-    const url = `http://localhost:5173/reset-password/76b${id}76b`;
+    const url = `${frontendURL}/reset-password/76b${id}76b`;
 
     // Send Mail
     const result = await sendMail(

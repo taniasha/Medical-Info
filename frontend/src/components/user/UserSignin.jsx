@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { signin } from "../../store/authSlice";
 import { useContext } from "react";
 import { SocketContext } from "../context/SocketContext";
+const backendBase = import.meta.env.VITE_API_URL;
 
 export default function UserSignin() {
   const {
@@ -22,7 +23,7 @@ export default function UserSignin() {
     let password = data.password;
 
     try {
-      const res = await axios.post("https://medical-info.onrender.com/API/user/signin", {
+      const res = await axios.post(`${backendBase}/API/user/signin`, {
         email,
         password,
       });

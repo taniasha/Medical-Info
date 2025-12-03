@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-
+const backendBase = import.meta.env.VITE_API_URL;
 
 const ResetPass = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -16,7 +16,7 @@ id = id.replace(/^76b/, "").replace(/76b$/, "");
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.post("https://medical-info.onrender.com/API/user/validate", { id });
+        const res = await axios.post(`${backendBase}/API/user/validate`, { id });
 
         if (res.status !== 200) {
           alert("Reset Password Link is not valid");

@@ -23,7 +23,7 @@ const app = express();
 connectRedis();
 
 const corsOptions = {
-  origin: "*",
+origin: ["http://localhost:5173", "https://medical-infor.netlify.app"],
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   credentials: true,
 };
@@ -33,7 +33,7 @@ const io = new Server(server, {
   cors: corsOptions,
 });
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

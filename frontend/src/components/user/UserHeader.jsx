@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import GeneralModal from "../pages/GeneralModal.jsx";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function Header() {
   const role = useSelector((state) => state.auth.role);
@@ -13,7 +14,7 @@ function Header() {
   const [isModalOpen, setIsModelOpen] = useState(false);
 
   const handleSignOut = async () => {
-    const res = await axios.get("https://medical-info.onrender.com/API/signout", {
+    const res = await axios.get(`${backendBase}/API/signout`, {
       withCredentials: true,
     });
     if (res.data.success) {

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import OwnerHeader from "./OwnerHeader";
 import GeneralModal from "../pages/GeneralModal";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function AdminHome() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function AdminHome() {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.get("/API/medicine", {
+        const res = await axios.get(`${backendBase}/API/medicine`, {
           withCredentials: true,
         });
 
@@ -33,7 +34,7 @@ function AdminHome() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`/API/medicine/${id}`);
+      const res = await axios.delete(`${backendBase}/API/medicine/${id}`);
 
       if (res.data.success) {
         setAllMedicine((prevAllMedicine) =>
@@ -48,7 +49,7 @@ function AdminHome() {
   };
 
   const handleUpdate = (id) => {
-    navigate(`/admin/update/${id}`);
+    navigate(`${backendBase}/admin/update/${id}`);
   };
 
   return (

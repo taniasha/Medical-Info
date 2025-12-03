@@ -4,6 +4,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import UserHeader from "../user/UserHeader";
+const backendBase = import.meta.env.VITE_API_URL;
 
 export default function OrderMedicine() {
   const {
@@ -33,7 +34,7 @@ export default function OrderMedicine() {
 
   const onSubmit = async (data) => {
     if (medicines.length > 0) {
-      const res = await axios.post("https://medical-info.onrender.com/API/user/medicine/order", {
+      const res = await axios.post(`${backendBase}/API/user/medicine/order`, {
         ...data,
         medicines,
       });

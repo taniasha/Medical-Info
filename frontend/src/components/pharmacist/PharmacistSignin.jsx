@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signin } from "../../store/authSlice";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function PharmacistSignin() {
   const {
@@ -18,7 +19,7 @@ function PharmacistSignin() {
   const handleSignin = async (data) => {
     const { email, password } = data;
 
-    const res = await axios.post("/API/pharmacist/signin", {
+    const res = await axios.post(`${backendBase}/API/pharmacist/signin`, {
       email,
       password,
     });

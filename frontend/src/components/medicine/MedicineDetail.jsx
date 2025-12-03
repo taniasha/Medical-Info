@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../user/UserHeader";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function MedicineDetail() {
   const { id } = useParams();
@@ -14,7 +15,7 @@ function MedicineDetail() {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.get(`/API/medicine/${id}`);
+        const res = await axios.get(`${backendBase}/API/medicine/${id}`);
         setName(res.data.name);
         setUses(res.data.uses);
         setSideEffects(res.data.sideEffects);

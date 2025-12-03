@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signin } from "../../store/authSlice";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function Signup() {
   const {
@@ -24,7 +25,7 @@ function Signup() {
     const mobile = data.mobile;
 
     try {
-      const res = await axios.post("https://medical-info.onrender.com/API/user/signup", {
+      const res = await axios.post(`${backendBase}/API/user/signup`, {
         name,
         email,
         password,

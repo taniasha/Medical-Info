@@ -4,6 +4,7 @@ import OwnerHeader from "./OwnerHeader";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function AddPharmacist() {
   const {
@@ -15,10 +16,11 @@ function AddPharmacist() {
   const navigate = useNavigate();
 
   const addPharmacist = async (data) => {
+    console.log("Form Submitted:", data);
     const { name, email, password, mobile, startTime, endTime } = data;
 
     const res = await axios.post(
-      "https://medical-info.onrender.com/API/admin/pharmacist/add",
+      `${backendBase}/API/pharmacist/add`,
       {
         name,
         email,
@@ -30,7 +32,8 @@ function AddPharmacist() {
       {
         withCredentials: true,
       }
-    );
+    );console.log("Backend Base:", backendBase);
+
 
     if (res.data.success) {
       Swal.fire({

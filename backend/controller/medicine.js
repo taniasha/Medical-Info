@@ -1,9 +1,13 @@
 import Medicine from "../models/medicine.js";
 
 export const index = async (req, res) => {
-  const allMedicine = await Medicine.find({});
-
-  res.send({ success: true, allMedicine });
+   try {
+    const allMedicine = await Medicine.find({});
+    res.status(200).json({ success: true, allMedicine });
+  } catch (e) {
+    console.error("Error fetching medicines:", e);
+    res.status(500).json({ error: "Something went wrong", details: e.message });
+  }
 };
 
 export const createMedicine = async (req, res) => {
@@ -15,13 +19,16 @@ export const createMedicine = async (req, res) => {
   res.send({success: true, message: "Medicine added successfully"});
 };
 
+
 export const viewMedicine = async (req, res) => {
   let { id } = req.params;
 
   const medicine = await Medicine.findById(id);
 
   res.send(medicine);
+  // console.error("Error in /API/medicine/search:", err);
 };
+
 
 export const updateMedicine = async (req, res) => {
   let { id } = req.params;
@@ -36,6 +43,7 @@ export const updateMedicine = async (req, res) => {
   res.send(updateMedicine);
 };
 
+
 export const deleteMedicine = async (req, res) => {
   let { id } = req.params;
 
@@ -43,6 +51,8 @@ export const deleteMedicine = async (req, res) => {
 
   res.send({success: true, message: 'Medicine deleted successfully!!!'});
 };
+
+
 
 export const filterMedicine = async (req, res) => {
   const search = req.params.search;

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import OwnerHeader from "../admin/OwnerHeader";
 import AddMedicine from "./AddMedicine";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function AddMedicinePage() {
   const navigate = useNavigate();
@@ -103,7 +104,7 @@ function AddMedicinePage() {
     e.preventDefault();
     console.log("Submitting ");
     try {
-      const res = await axios.post("/API/medicine/create", {
+      const res = await axios.post(`${backendBase}/API/medicine/create`, {
         name,
         uses,
         sideEffects,

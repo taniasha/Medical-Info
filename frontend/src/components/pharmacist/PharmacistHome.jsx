@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import OwnerHeader from "../admin/OwnerHeader";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function PharmacistHome() {
   const [allMedicine, setAllMedicine] = useState([]);
@@ -13,7 +14,7 @@ function PharmacistHome() {
       async function getData() {
         try {
           if (query !== "") {
-            const res = await axios.get(`/API/medicine/search/${query}`);
+            const res = await axios.get(`${backendBase}/API/medicine/search/${query}`);
             setAllMedicine(res.data);
           } else {
             const res = await axios.get("/API/medicine");

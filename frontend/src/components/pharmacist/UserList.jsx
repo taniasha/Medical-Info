@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import OwnerHeader from '../admin/OwnerHeader';
 import { useNavigate } from "react-router-dom";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function UserList() {
   const [userList, setUserList] = useState([]);
@@ -11,7 +12,7 @@ function UserList() {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await axios.get("/API/user", {
+        const res = await axios.get(`${backendBase}/API/user`, {
           withCredentials: true,
         });
 
@@ -25,7 +26,7 @@ function UserList() {
   }, []);
 
   const handleExpert = (mobile) => {
-    navigate("/pharmacist/chat-with-user", {
+    navigate(`${backendBase}/pharmacist/chat-with-user`, {
       state: mobile,
     });
   };

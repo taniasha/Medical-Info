@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { SocketContext } from "../context/SocketContext";
 import { useSelector } from "react-redux";
 import { io } from "socket.io-client";
+const backendBase = import.meta.env.VITE_API_URL;
 
 function SocketProvider({ children }) {
   const [mySocket, setMySocket] = useState(null);
@@ -11,7 +12,7 @@ function SocketProvider({ children }) {
   useEffect(() => {
     if (!auth.role || !mobile) return; // wait until both are defined
 
-    const socket = io("http://localhost:3000", { withCredentials: true });
+    const socket = io(`${backendBase}`, { withCredentials: true });
 
     socket.on("connect", () => {
       console.log("Socket connected:", socket.id);

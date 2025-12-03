@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+const backendBase = import.meta.env.VITE_API_URL;
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ const ForgotPassword = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("https://medical-info.onrender.com/API/user/forget-pass", { email });
+      const res = await axios.post(`${backendBase}/API/user/forget-pass`, { email });
 
       if (res.status === 200) {
         alert("Mail sent successfully!");

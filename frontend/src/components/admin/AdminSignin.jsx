@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signin } from "../../store/authSlice";
+const backendBase = import.meta.env.VITE_API_URL;
 
 export default function AdminSignin() {
   const {
@@ -20,7 +21,7 @@ export default function AdminSignin() {
     let password = data.password;
 
     try {
-      const res = await axios.post("/API/admin/signin", {
+      const res = await axios.post(`${backendBase}/API/admin/signin`, {
         email,
         password,
       });

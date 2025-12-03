@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import UserHeader from "./components/user/UserHeader";
 import { SocketContext } from "./components/context/SocketContext";
+const backendBase = import.meta.env.VITE_API_URL;
+
 
 function Home() {
   const [allMedicine, setAllMedicine] = useState([]);
@@ -18,10 +20,10 @@ function Home() {
       async function getData() {
         try {
           if (query !== "") {
-            const res = await axios.get(`https://medical-info.onrender.com/API/medicine/search/${query}`);
+            const res = await axios.get(`${backendBase}/API/medicine/search/${query}`);
             setAllMedicine(res.data);
           } else {
-            const res = await axios.get("https://medical-info.onrender.com/API/medicine");
+            const res = await axios.get(`${backendBase}/API/medicine`);
 
             if (res.data.success) {
               setAllMedicine(res.data.allMedicine);

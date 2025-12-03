@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+const backendBase = import.meta.env.VITE_API_URL;
 
 export default function AddMedicine() {
   const today = new Date().toISOString().split("T")[0];
@@ -29,7 +30,7 @@ export default function AddMedicine() {
 
   useEffect(() => {
     async function getData() {
-      const res = await axios.get(`/API/medicine/${id}`);
+      const res = await axios.get(`${backendBase}/API/medicine/${id}`);
 
       setName(res.data.name);
       setUses(res.data.uses);
